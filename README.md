@@ -24,17 +24,35 @@ The observed data shows exponential decay over time, decreasing from the initial
 ## PW2 --- Lab B
 
 ### Part 2: Optimization Methods Comparison
-- **Convex function ($f(x)$):** All three methods (Gradient Descent, Newton, and SLSQP) successfully converged to the global minimum at $x \approx 3$[cite: 1].
-- **Harder landscape ($g(x)$):** Starting points and algorithms heavily influence the results. From $x_0 = 0$, Newton's method converged to a maximum ($g'' < 0$), whereas starting from $x_0 = 2$ it landed on a minimum ($g'' > 0$)[cite: 2]. Gradient descent and SLSQP reliably navigated local vs global constraints based on initial parameters[cite: 1, 2].
+- **Convex function ($f(x)$):** All three methods (Gradient Descent, Newton, and SLSQP) successfully converged to the global minimum at $x \approx 3$.
+- **Harder landscape ($g(x)$):** Starting points and algorithms heavily influence the results. From $x_0 = 0$, Newton's method converged to a maximum ($g'' < 0$), whereas starting from $x_0 = 2$ it landed on a minimum ($g'' > 0$). Gradient descent and SLSQP reliably navigated local vs global constraints based on initial parameters
 
 ### Part 3: Reaction Rate Fitting
-- **Fitted Rate Constant ($k$):** $\approx 0.26$[cite: 3]
-- The model curve effectively matches the measured concentration data (saved as `PW2/Lab B/kinetics.png`)[cite: 3].
+- **Fitted Rate Constant ($k$):** $\approx 0.26$
+- The model curve effectively matches the measured concentration data (saved as `PW2/Lab B/kinetics.png`).
 
 ### Part 4: Chemical Equilibrium
 - **Equilibrium Extent ($x$):** $\approx 0.66$
-- **Equilibrium Amounts:** $H_2 \approx 0.34$ mol, $I_2 \approx 0.34$ mol, $HI \approx 1.33$ mol[cite: 4].
-- Both Newton's root-finding method and SLSQP minimization agreed on the final equilibrium composition (saved as `PW2/Lab B/equilibrium.png`)[cite: 4].
+- **Equilibrium Amounts:** $H_2 \approx 0.34$ mol, $I_2 \approx 0.34$ mol, $HI \approx 1.33$ mol.
+- Both Newton's root-finding method and SLSQP minimization agreed on the final equilibrium composition (saved as `PW2/Lab B/equilibrium.png`).
 
 ### Part 5: Titration Equivalence Point
-- **Equivalence Point:** Detected at $V \approx 50.0$ mL where the slope of the pH curve ($\frac{dpH}{dV}$) reaches its maximum peak (saved as `PW2/Lab B/titration.png`)[cite: 4].
+- **Equivalence Point:** Detected at $V \approx 50.0$ mL where the slope of the pH curve ($\frac{dpH}{dV}$) reaches its maximum peak (saved as `PW2/Lab B/titration.png`).
+
+## PW3 --- Data, Distributions, Testing, and Causation
+
+### Session 1: Characterise the Data & Normality Check
+- **Shapiro-Wilk Normality Test:** All continuous variables (`age`, `chol`, `trestbps`, `thalach`) deviated from a normal distribution (Non-Normal).
+- **Plots Saved:** `PW3/heart_distributions.png`
+
+### Session 2: Statistical Conclusions
+- **Heart Rate Difference:** A two-sample t-test confirmed that healthy patients achieve a significantly higher maximum heart rate (`thalach`) than heart disease patients ($p < 0.001$).
+- **Age vs Heart Rate:** Negative correlation ($r \approx -0.39$) showing max heart rate decreases with age.
+- **Plots Saved:** `PW3/thalach_comparison.png`, `PW3/age_vs_thalach.png`
+
+### Dataset 2: Chemical-Exposure Mystery (Causation vs Correlation)
+- **Naive Analysis:** Cadmium initially appeared to be strongly associated with tumor malignancy ($r = 0.8800$).
+- **Controlled Analysis:** After accounting for `pollution_index` (confounding variable), the true driver was revealed to be **Benzene** ($r = 0.6966$), while Cadmium's strong correlation was merely a spurious artifact of the pollution index.
+
+### Bonus: Categorical Unpredictability
+- Binary entropy of the `target` column is `0.9951 bits`, indicating high balance and uncertainty prior to modeling.
